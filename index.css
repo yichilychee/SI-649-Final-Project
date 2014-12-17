@@ -1,0 +1,259 @@
+/*html, body, #map {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}*/
+body {
+  font: 12px helvetica,sans-serif;
+  position: absolute;
+  width: 100%;
+  font-family: "Raleway","Helvetica";
+}
+h1,h2{
+  color: #000;
+  text-align: center;
+}
+
+#header-topics{
+  width: 100%;
+  height: 30px;
+  background-color:#fcfcfc;
+  border-bottom:1px solid #CCCCCC;  
+  position:fixed;
+  padding: 8px 0 0 20px;
+  z-index:9;
+}
+
+.hcircles{
+  float: right;
+  display: inline-block;
+  width:78%;
+  height: 50px;
+  margin: -42px;
+}
+
+.onehcircle:hover{
+  opacity:0.5;
+  cursor:pointer;
+}
+
+.onehcircle:active{
+  opacity:0.5;
+}
+
+/*postboard effect*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+p{
+  font-family: "Raleway","Helvetica",sans-serif;
+  color: #333;
+  font-size: 10px;
+  line-height: 1.3;
+  margin-bottom: 0.5em;
+}
+
+p:last-child{
+  margin-bottom: 0;
+}
+
+.container{
+  padding: 1% 1% 0;
+  text-align: justify;
+  font-size: 0;
+  width:80%;
+  margin: auto;
+}
+
+.container:after{
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+
+.container .item,
+.container .gap{
+  display: inline-block;
+  width: 18%;
+}
+
+.container .item{
+  text-align: left;
+  margin-bottom: 1%;
+  padding: 2%;
+  vertical-align: top;
+  /*display: none; <-- uncomment this rule for use with MixItUp*/
+}
+
+/* Flex box progressive enhancements: */
+
+.container{
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  -webkit-justify-content: space-between;
+  -webkit-align-content: flex-start;
+}
+
+/*postboard effect ends*/
+
+
+#postboard{
+  margin-left: 2%;
+  position: relative;
+  padding: 20px;
+  width: 1024px;
+  /*height: 200px;
+  overflow-y: scroll;*/
+  border: 1px #444 solid;
+}
+
+#scatterplot{
+  /*display: block;*/
+  float: left;
+  margin-top: -5%;
+  position: relative;
+/*  border:1px solid black;*/
+  padding: 20px;
+}
+
+#topics{
+  width: 1100px;
+  margin:auto;
+}
+
+#scary_plot{
+  display:block;
+  width: 1100px;
+  margin:auto;
+}
+
+.topic_circle{
+  cursor:pointer;
+}
+
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+/*keywordfreq graph*/
+
+#keywords{
+ width: 1000px;
+/*float: left;*/
+/*position: relative;*/
+/* margin-left: 3%; */
+padding: 5px;
+margin:auto;
+}
+#timeline{
+  width:80%;
+display: block;
+margin:auto;
+}
+.barA {
+  fill: grey;
+}
+
+/*.barA:hover {
+  fill: orangered ;
+}*/
+
+/*.barT{
+  fill: orange;
+}*/
+.barT:hover{
+  fill: orangered;
+}
+
+
+.d3-tip {
+  line-height: 1;
+  /*font-weight: bold;*/
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #f2f2f2;
+  font-family: "Raleway","Helvetica";
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+/*keywordfreq graph style ends*/
+
+/*timeline style begins*/
+body {
+  font: 10px sans-serif;
+}
+
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: white;
+}
+
+#timeline .x.axis path {
+  display: none;
+}
+
+.y.axis.t path {
+  display: none;
+}
+
+.legend line {
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.tooltip{
+  margin-left: 100px;
+  text-anchor: middle;
+  font-family: "Raleway","Helvetica";
+  font-size: 12px;
+  font-weight: bold;
+  fill: black;  
+}
+/*timeline style ends*/
+
+h3{
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+}
+
+p#explaination {
+  text-align: center;
+  font-size: 14px;
+}
+

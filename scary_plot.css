@@ -1,0 +1,258 @@
+/*html, body, #map {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}*/
+body {
+  font-family: "Raleway","Helvetica";
+  font-size: 12px;
+  position: absolute;
+  color: #666;
+  width: 100%;
+}
+h1,h2{
+  color: #666;
+  text-align: center;
+}
+h2{
+	font-size: 18px;
+	line-height: 21px;
+}
+p{
+	-webkit-margin-before: 0.5em;
+	-webkit-margin-after: 0em;
+	font-size: 10px;
+}
+#filter{
+	display: block;
+  width:98%;
+  position: absolute;
+  margin:auto;
+   margin-top: -40px; 
+  /*border:1px solid black;*/
+}
+
+#likes, #hugs, #metoos,#overall,#remainder{
+	font-size: 18px;
+	float: left;
+	width: 100%;
+	height: 70px;
+	position:relative;
+	text-align: center;
+	margin-top: 2%;
+}
+
+#likes input, #hugs input, #metoos input,#overall input,#remainder input{
+	display: inline-block;
+	width: 120px;
+	text-align: center;
+	vertical-align: middle;
+	margin-top: 1px;
+}
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: silver;
+    width: 200px;
+    height:10px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #666;
+    opacity: 0.5;
+    width: 10px;
+    height: 20px;
+}
+#likes label, #hugs label, #metoos label,#overall label,#remainder label{
+	display: inline-block; 
+	width: 220px; 
+	font-size: 10px;
+	text-align: center;
+}
+#likes-slider, #hugs-slider, #metoos-slider, #overall-slider, #remainder-slider{
+	width: 100%;
+}
+
+#text_display{
+	float: left;
+	width: 50%;
+	border: 10px solid #000;
+	padding: 20px;
+}
+
+#scatterplot_overall{
+		margin-left: 2%;
+}
+
+#scatterplot_overall,#scatterplot_likes,#scatterplot_hugs,#scatterplot_metoos,#scatterplot_remainder{
+	float: left;
+	display: inline-block;
+	width: 220px;
+	height: 200px;
+	position: relative;
+	text-align: left;
+	/*border:1px solid black;*/
+}
+#scatterplot_overall svg,#scatterplot_likes svg,#scatterplot_hugs svg,#scatterplot_metoos svg, #scatterplot_remainder svg{
+	border:1px solid #999;
+	width: 120px;
+	height: 120px;
+	display: block;
+	margin: auto;
+	/*background-color: #999;*/
+}
+#scatterplot_overall svg:hover{
+	border:2px solid #999;
+}
+
+#scatterplot{
+	display: block;
+	float: left;
+	width:100%;
+	margin-left: auto;
+	margin-right:auto;
+	position: relative;
+    /*border:1px solid black;*/
+	padding: 20px;
+  padding-top:0px;
+  margin-top:0px;
+}
+
+#topic_data_size{
+  display: block;
+	float: left;
+  width: 100%;
+  margin-left:0px; 
+  margin-top:170px;
+  text-align: center;
+}
+
+/*Scattrt Plot style*/
+
+path.line {
+	  fill: none;
+	  stroke: purple;
+	  stroke-width: 1.5;
+	}
+	  
+path.area {
+  fill: #E2B2B2;
+}
+.axis {
+	   shape-rendering: crispEdges;
+	}
+.x_small.axis tick{
+	display: none;
+}  
+.y_small.axis tick{
+	display: none;
+}   
+.x.axis line {
+   stroke: #666;
+   stroke-width: 1.0;
+}
+  
+.x.axis .minor {
+   stroke-opacity: .5;
+   stroke: #999;
+   stroke-width: 0.5;
+}
+ 
+.x.axis path {
+ 	fill: none;
+    stroke: #666;
+    stroke-width: 1.0;
+}
+   
+.y.axis line, .y.axis path {
+   fill: none;
+   stroke: #666;
+   stroke-width: 1.0;
+}
+
+.y.axis .minor{
+   stroke: #999;
+   stroke-width: 0.5;
+   stroke-opacity: 0.5;
+}
+
+.x_small.axis line {
+   stroke: #666;
+   stroke-width: 1.0;
+}
+  
+.x_small.axis .minor {
+   stroke-opacity: .5;
+   stroke: #999;
+   stroke-width: 0.5;
+}
+ 
+.x_small.axis path {
+ 	fill: none;
+    stroke: #666;
+    stroke-width: 1.0;
+}
+   
+.y_small.axis line, .y_small.axis path {
+   fill: none;
+   stroke: #666;
+   stroke-width: 1.0;
+}
+
+.y_small.axis .minor{
+   stroke: #999;
+   stroke-width: 0.5;
+   stroke-opacity: 0.5;
+}
+/*Hover Info Box*/
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+#tooltip{
+    position: absolute;
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+    pointer-events:none;
+    visibility: hidden;
+}
+#update_size,#reset,#update_size,#reset{
+    background-color: #666;
+    color: #fff;
+    border: 1px solid #666;
+}
+#update_size:hover,#reset:hover,#update_size:active,#reset:active{
+    background-color: #f9f9f9;
+    color: #666;
+    border: 1px solid #666;
+}''

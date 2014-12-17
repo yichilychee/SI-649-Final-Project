@@ -1,0 +1,180 @@
+<!--649 Final Project--><!--test line-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="scary_plot.css">
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <title>ScaryMommy Confession Board Data Visualization</title>
+
+</head>
+<body>
+  <header id="header-topics">
+  <span>ScaryMommy Confession Board Posts Data Visualization</span>
+  <div class="hcircles"></div>
+  </header>
+<div id="fullpage">
+  <div class="section">
+  <h2>Welcome to ScaryMommy Confession Board Data Visualization</h2>
+  <h3>On This Page, You Can See the Main 10 Topics of All the Posts</h3>
+    <p id="explaination">You can always explore these topics by clicking them or clicking their minimized figures on the menu bar.<br><br>Mallet topic modeling has been used to generate topics.<br>Each topic contains 5 keywords to explain the content.<br><br><br></p>
+    <p></p>
+      <div id="topics"></div> 
+  </div>
+
+  <div class="section">
+    <h3>See the What Keywords have been Used Most</h3>
+    <p id="explaination">You can compare keywords frequency of your topic choice and its overall frequency.<br>Grey indicates overall frequency while colorful color indicates topic frequency.<br><br><br><br></p>
+    <p></p>
+      <div id = "keywords"> </div> 
+  </div>
+
+  <div class="section">
+    <h3>See the Sentiment and Polarity Analysis of Posts under Your Topic Choice</h3>
+      <p id="explaination">You can filter the results by #likes, #hugs, #metoos.<br>Sentiment is measured from -1 (Negative) to 1 (Positive). Polarity is measured from 0 (Agreement) to 1 (Disagreement)<br><br><br><br></p>
+      <p></p>
+    <div id="scary_plot">
+          <div id="filter">
+              <div id = "scatterplot_overall" class="scatterplot_view_small"> 
+                    <div id = "overall"><span>Overall View</span>
+                        <p>
+                          <label for="overall-slider">
+                            <span id="overall-slider-value" style="display:none"> </span>
+                                Likes > <span class="likes-slider-value"></span> or
+                                Hugs > <span class="hugs-slider-value"></span> or
+                                Metoos > <span class="metoos-slider-value"></span>
+                           
+                          </label>
+                        </p>
+                        <p>
+                          0<input type="range" min="0" max="100" id="overall-slider" width="200px;">100
+                        </p>
+                    </div>
+              </div> 
+              <div id = "scatterplot_likes">
+                    <div id = "likes"><span>Likes View</span>
+                         <p>
+                          <label for="likes-slider"> Likes > <span class="likes-slider-value">…</span>
+                          </label>
+                        </p>
+                        <p>
+                         0<input type="range" min="0" max="100" id="likes-slider" width="200px;">100
+                        </p>
+                    </div> 
+              </div> 
+
+              <div id = "scatterplot_hugs">
+                    <div id = "hugs"><span>Hugs View</span>
+                        <p>
+                          <label for="hugs-slider">Hugs > <span class="hugs-slider-value">…</span>
+                          </label>
+                        </p>
+                        <p>
+                          0<input type="range" min="0" max="100" id="hugs-slider" width="200px;">100
+                        </p>
+                    </div>
+              </div>  
+              
+              <div id = "scatterplot_metoos">
+                    <div id = "metoos"><span>Metoos View</span>
+                       <p>
+                          <label for="metoos-slider">Metoos > <span class="metoos-slider-value">…</span>
+                          </label>
+                        </p>
+                        <p>
+                          0<input type="range" min="0" max="100" id="metoos-slider" width="200px;">100
+                        </p>
+                  </div>
+              </div>
+
+              <div id = "scatterplot_remainder">
+                    <div id = "remainder"><span>Remainder View</span>
+                       <p>
+                          <label for="remainder-slider"><span id="remainder-slider-value" style="display:none">…</span>
+                                Likes > <span class="likes-slider-value"></span> &
+                                Hugs > <span class="hugs-slider-value"></span> &
+                                Metoos > <span class="metoos-slider-value"></span>
+                          </label>
+                        </p>
+                        <p>
+                          0<input type="range" min="0" max="100" id="remainder-slider" width="200px;">100
+                        </p>
+                  </div>
+              </div>
+       </div>
+       <div id = "topic_data_size">
+          Sample Data Size (Recommended Range: 10 - 10000)
+          <input id="data_size_input" type="text" name="likes" value="50"></input>
+          <button id="update_size" name="update_size" onclick="setdatasize();"> Update </button>
+          <button id="reset" name="reset" onclick="resetupdate();"> Reset </button>
+      </div>
+       <div id = "scatterplot">
+            <div id="tooltip" class="hidden">
+              <p><strong>Post <span id="post-id"></span></strong></p>
+              <p><span id="post_value"></span></p>
+              <p>Likes: <span id="post_likes"></span> Hugs: <span id="post_hugs"></span> Me toos: <span id="post_metoos"></span></p>
+            </div>
+       </div>
+    </div>
+    </div>
+        <div class="section">
+        <h3>See the Most Popular Posts of Your Topic Choice</h3>
+        <p id="explaination">The popularity is calculated by the sum of #likes, #hugs, #metoos.<br><br><br><br></p>
+        <p></p>
+          <div class = "container"></div> 
+        </div>
+        <div class="section">
+        <h3>See the Trends of the 10 Topics over Time</h3>
+        <p id="explaination">The time is from March 2008 to 2013. <br>Since there is no timestamp in the original data, time chunk has been created. Each time chunk has 800 posts based on general calculation.<br><br><br><br></p>
+        <p></p>
+          <div id = "timeline"></div>
+        </div> 
+</div>
+
+  <script src="js/topic_circles.js"></script>
+  <script src="js/posts.js"></script>
+  <script src="js/keyword_frequency.js"></script>
+  <script src="js/color.js"></script>
+  <script src="js/timeline.js"></script>
+  <script type="text/javascript">
+    var data_size_update = 50;
+     var index_update =0;
+     function setdatasize(){
+       if(d3.selectAll("#data_size_input").property("value")){
+        data_size_update = d3.selectAll("#data_size_input").property("value");
+        scatterPlot(index_update);
+        }
+     }
+
+     function resetupdate(){ 
+        scatterPlot(index_update);
+     }
+
+  </script>
+  <script src="js/scary_plot.js"></script>
+
+  <script type="text/javascript" src="js/jquery.fullPage.js"></script>
+  <script type="text/javascript" src="js/jquery.fullPage.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#fullpage').fullpage({
+        sectionsColor: ['#f2f2f2', '#f2f2f2', '#f2f2f2', '#f2f2f2', '#f2f2f2'],
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+        navigation: true,
+        navigationPosition: 'right',
+        navigationTooltips: ['All Topics', 'Topic Keywords', 'Topic Posts Scatterplot', 'Popular Topic Posts', 'All Topic Timeline']
+      });
+    });
+  </script>
+
+</body>
+</html>
